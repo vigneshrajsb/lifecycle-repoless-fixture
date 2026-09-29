@@ -33,6 +33,7 @@ services:
   - name: 'worker'
     requires:
       - name: 'wkv'
+      - name: 'kv'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
       branchName: 'trunk'
