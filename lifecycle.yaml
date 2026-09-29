@@ -7,7 +7,6 @@ environment:
 services:
   - name: 'api'
     requires:
-      - name: 'kv'
       - name: 'state'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
@@ -22,8 +21,6 @@ services:
             - 8080
           env:
             SERVICE: 'api'
-            KV_HOST: '{{kv_internalHostname}}'
-            KV_BRANCH: '{{kv_branchName}}'
             STATE_HOST: '{{state_internalHostname}}'
       deployment:
         public: false
