@@ -3,6 +3,7 @@ environment:
   defaultServices:
     - name: 'api'
     - name: 'worker'
+    - name: 'cache'
 
 services:
   - name: 'api'
@@ -83,6 +84,17 @@ services:
             storageSize: '1Gi'
 
   - name: 'wkv'
+    docker:
+      dockerImage: 'redis'
+      defaultTag: '7.2-alpine'
+      ports:
+        - 6379
+      deployment:
+        public: false
+        readiness:
+          tcpSocketPort: 6379
+
+  - name: 'cache'
     docker:
       dockerImage: 'redis'
       defaultTag: '7.2-alpine'
