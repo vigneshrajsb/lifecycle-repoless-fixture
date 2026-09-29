@@ -11,11 +11,11 @@ services:
       - name: 'state'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
-      branchName: 'main'
+      branchName: 'trunk'
       docker:
         builder:
           engine: 'buildkit'
-        defaultTag: 'main'
+        defaultTag: 'trunk'
         app:
           dockerfilePath: 'Dockerfile'
           ports:
@@ -35,11 +35,11 @@ services:
       - name: 'wkv'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
-      branchName: 'main'
+      branchName: 'trunk'
       docker:
         builder:
           engine: 'buildkit'
-        defaultTag: 'main'
+        defaultTag: 'trunk'
         app:
           dockerfilePath: 'Dockerfile'
           ports:
