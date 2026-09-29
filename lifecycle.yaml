@@ -101,6 +101,6 @@ services:
       ports:
         - 6379
       deployment:
-        public: false
+        public: true
         readiness:
           tcpSocketPort: 6379
