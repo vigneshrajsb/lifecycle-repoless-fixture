@@ -53,6 +53,7 @@ services:
           tcpSocketPort: 8080
 
   - name: 'kv'
+    defaultUUID: 'royal-leaf-268838'
     docker:
       dockerImage: 'redis'
       defaultTag: '7.2-alpine'
