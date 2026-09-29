@@ -6,8 +6,6 @@ environment:
 
 services:
   - name: 'api'
-    requires:
-      - name: 'kv'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
       branchName: 'trunk'
@@ -21,8 +19,6 @@ services:
             - 8080
           env:
             SERVICE: 'api'
-            KV_HOST: '{{kv_internalHostname}}'
-            KV_BRANCH: '{{kv_branchName}}'
       deployment:
         public: false
         readiness:
@@ -46,17 +42,3 @@ services:
         public: false
         readiness:
           tcpSocketPort: 8080
-
-  - name: 'kv'
-    docker:
-      dockerImage: 'redis'
-      defaultTag: '7.2-alpine'
-      ports:
-        - 6379
-      env:
-        PARENT_HOST: '{{api_internalHostname}}'
-      deployment:
-        public: false
-        readiness:
-          tcpSocketPort: 6379
-
