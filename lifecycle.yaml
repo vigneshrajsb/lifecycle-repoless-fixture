@@ -29,8 +29,6 @@ services:
           tcpSocketPort: 8080
 
   - name: 'worker'
-    requires:
-      - name: 'wkv'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
       branchName: 'trunk'
@@ -44,7 +42,6 @@ services:
             - 8080
           env:
             SERVICE: 'worker'
-            WKV_HOST: '{{wkv_internalHostname}}'
       deployment:
         public: false
         readiness:
@@ -63,13 +60,3 @@ services:
         readiness:
           tcpSocketPort: 6379
 
-  - name: 'wkv'
-    docker:
-      dockerImage: 'redis'
-      defaultTag: '7.2-alpine'
-      ports:
-        - 6379
-      deployment:
-        public: false
-        readiness:
-          tcpSocketPort: 6379
