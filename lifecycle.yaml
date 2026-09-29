@@ -8,7 +8,6 @@ services:
   - name: 'api'
     requires:
       - name: 'kv'
-      - name: 'state'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
       branchName: 'trunk'
@@ -24,7 +23,6 @@ services:
             SERVICE: 'api'
             KV_HOST: '{{kv_internalHostname}}'
             KV_BRANCH: '{{kv_branchName}}'
-            STATE_HOST: '{{state_internalHostname}}'
       deployment:
         public: false
         readiness:
@@ -64,23 +62,6 @@ services:
         public: false
         readiness:
           tcpSocketPort: 6379
-
-  - name: 'state'
-    docker:
-      dockerImage: 'redis'
-      defaultTag: '7.2-alpine'
-      command: 'redis-server'
-      arguments: '--appendonly%%SPLIT%%yes%%SPLIT%%--dir%%SPLIT%%/data'
-      ports:
-        - 6379
-      deployment:
-        public: false
-        readiness:
-          tcpSocketPort: 6379
-        serviceDisks:
-          - name: 'data'
-            mountPath: '/data'
-            storageSize: '1Gi'
 
   - name: 'wkv'
     docker:
