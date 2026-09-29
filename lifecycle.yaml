@@ -8,7 +8,6 @@ services:
   - name: 'api'
     requires:
       - name: 'state'
-      - name: 'kv'
     github:
       repository: 'vigneshrajsb/lifecycle-repoless-fixture'
       branchName: 'trunk'
